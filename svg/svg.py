@@ -127,7 +127,10 @@ class Transformable:
 
     def transform(self, matrix=None):
         for x in self.items:
-            x.transform(self.matrix)
+            if matrix:
+                x.transform(self.matrix * matrix)
+            else:
+                x.transform(self.matrix)
 
     def length(self, v, mode='xy'):
         # Handle empty (non-existing) length element
